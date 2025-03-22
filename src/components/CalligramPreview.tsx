@@ -22,6 +22,8 @@ interface CalligramPreviewProps {
   fontWeight: string;
   fontStyle: string;
   backgroundColor: string;
+  title?: string;
+  author?: string;
 }
 
 interface Point {
@@ -41,16 +43,23 @@ const CalligramPreview = forwardRef<HTMLDivElement, CalligramPreviewProps>(
       fontWeight,
       fontStyle,
       backgroundColor,
+      title = "",
+      author = "",
     },
     ref
   ) => {
     const [points, setPoints] = useState<Point[]>([]);
-    const canvasWidth = 800;
+    const canvasWidth = 1000; // Increased to accommodate side-by-side layout
     const canvasHeight = 600;
+    const calligramWidth = 500; // Half of the canvas for the calligram
 
     useEffect(() => {
       // Generate shape points based on selected shape
-      const shapePoints = generateShapePoints(shape, canvasWidth, canvasHeight);
+      const shapePoints = generateShapePoints(
+        shape,
+        calligramWidth,
+        canvasHeight
+      );
       setPoints(shapePoints);
     }, [shape]);
 
@@ -525,6 +534,71 @@ const CalligramPreview = forwardRef<HTMLDivElement, CalligramPreviewProps>(
       });
     };
 
+    const renderOriginalText = () => {
+      if (!text) return null;
+
+      // Format the original text with line breaks
+      const formattedText = text.split(/\n/).map((line, i) => (
+        <p
+          key={i}
+          style={{
+            margin: "0.5rem 0",
+            padding: 0,
+          }}
+        >
+          {line}
+        </p>
+      ));
+
+      return (
+        <div
+          style={{
+            position: "absolute",
+            left: `${calligramWidth + 30}px`,
+            top: "50px",
+            width: `${calligramWidth - 80}px`,
+            height: `${canvasHeight - 100}px`,
+            textAlign: "left",
+            fontFamily,
+            fontSize: `${fontSize}px`,
+            fontWeight,
+            fontStyle,
+            color,
+            padding: "20px",
+            boxSizing: "border-box",
+            borderLeft: `1px solid ${color}`,
+          }}
+        >
+          {title && (
+            <h3
+              style={{
+                marginTop: 0,
+                borderBottom: `1px solid ${color}`,
+                paddingBottom: "0.5rem",
+                marginBottom: "1rem",
+              }}
+            >
+              {title}
+            </h3>
+          )}
+          <div>{formattedText}</div>
+          {author && (
+            <p
+              style={{
+                marginTop: "1.5rem",
+                textAlign: "right",
+                fontStyle: "italic",
+                borderTop: `1px solid ${color}`,
+                paddingTop: "0.5rem",
+              }}
+            >
+              — {author}
+            </p>
+          )}
+        </div>
+      );
+    };
+
     return (
       <div
         ref={ref}
@@ -538,6 +612,7 @@ const CalligramPreview = forwardRef<HTMLDivElement, CalligramPreviewProps>(
         }}
       >
         {renderCalligram()}
+        {renderOriginalText()}
       </div>
     );
   }

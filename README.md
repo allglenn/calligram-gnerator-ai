@@ -13,6 +13,7 @@ A web application for creating beautiful calligrams - poems, phrases, or words a
   - Font size and letter spacing
   - Text color
 - Color themes for background and text
+- Side-by-side view with calligram on the left and original text on the right
 - Export your calligram as an image
 
 ## Screenshots
@@ -22,6 +23,9 @@ A web application for creating beautiful calligrams - poems, phrases, or words a
 
 ![Star Calligram Example](./Screenshot%202025-03-22%20at%2019.27.23.png)
 *Example of a star-shaped calligram with French text.*
+
+![Heart Calligram Example](./calligram-heart%20\(2\).png)
+*Example of a heart-shaped calligram with text distributed along the heart's curves.*
 
 ## What is a Calligram?
 
@@ -39,7 +43,7 @@ Apollinaire's calligrams are innovative and experimental, blending poetry and vi
 
 ## Available Shapes
 
-- **Heart**: Perfect for love poems or romantic messages
+- **Heart**: Perfect for love poems or romantic messages, with text flowing along curved paths to create a beautiful heart symbol
 - **Star**: Ideal for celestial themes, aspirations, or guidance
 - **Butterfly**: Great for poems about transformation, beauty, or freedom
 - **Dove**: Ideal for peace-themed texts, as in Apollinaire's "La Colombe Poignardée et le Jet d'Eau" (The Stabbed Dove and the Fountain)

@@ -42,6 +42,8 @@ const CalligramGenerator: React.FC = () => {
   const [fontStyle, setFontStyle] = useState<string>("normal");
   const [backgroundColor, setBackgroundColor] = useState<string>("#FFFFFF");
   const [selectedTheme, setSelectedTheme] = useState<string>("default");
+  const [title, setTitle] = useState<string>("");
+  const [author, setAuthor] = useState<string>("");
   const previewRef = useRef<HTMLDivElement>(null);
 
   // Define color themes
@@ -128,6 +130,14 @@ const CalligramGenerator: React.FC = () => {
     }
   };
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAuthor(e.target.value);
+  };
+
   const saveAsImage = async () => {
     if (previewRef.current === null) {
       return;
@@ -194,6 +204,30 @@ const CalligramGenerator: React.FC = () => {
           onChange={handleTextChange}
           placeholder="Enter your poem or text here..."
         />
+
+        <div className="title-input">
+          <label>
+            Optional Text Title
+            <input
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+              placeholder="Enter a title for your text (optional)"
+            />
+          </label>
+        </div>
+
+        <div className="author-input">
+          <label>
+            Author
+            <input
+              type="text"
+              value={author}
+              onChange={handleAuthorChange}
+              placeholder="Enter the author's name"
+            />
+          </label>
+        </div>
 
         <h2>3. Customize Your Calligram</h2>
 
@@ -326,6 +360,8 @@ const CalligramGenerator: React.FC = () => {
           fontWeight={fontWeight}
           fontStyle={fontStyle}
           backgroundColor={backgroundColor}
+          title={title}
+          author={author}
         />
       </div>
     </div>
