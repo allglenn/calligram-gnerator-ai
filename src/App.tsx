@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import CalligramGenerator from "./components/CalligramGenerator";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Calligram Generator</h1>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Create beautiful visual poems in the style of Guillaume Apollinaire
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <main>
+        <CalligramGenerator />
+      </main>
+      <footer>
+        <p>
+          Inspired by Guillaume Apollinaire's calligrams from "Calligrammes:
+          Poems of Peace and War (1913-1916)"
+        </p>
+      </footer>
     </div>
   );
 }
